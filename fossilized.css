@@ -13,7 +13,7 @@ width:70%;
 
 textarea
 {
-width:400px;
+width:600px;
 height:400px;
 }
 
@@ -25,5 +25,12 @@ width:300px;
 #confirmButton
 {
 width:100px;
+}
+
+#directionButtons
+{
+position:static;
+width:10px;
+height:10px;
 }
 

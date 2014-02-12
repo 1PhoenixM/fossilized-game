@@ -13,7 +13,14 @@
 		<div id="textarea"><textarea id="textDisplay" value=""></textarea></div>
 		<div id="input">
 			<input type="text" id="textInput" value=""></input>
-			<input type="button" id="confirmButton" value="ENTER" onclick="commands('noDir');">
+			<input type="button" id="confirmButton" value="CONFIRM" onclick="chooseCommands('noDir');">
+			<span id="directionButtons">
+				<br />
+				<input type="button" id="north" value="N" onclick="chooseCommands('n');"><br />
+				<input type="button" id="west" value="W" onclick="chooseCommands('w');">
+				<input type="button" id="east" value="E" onclick="chooseCommands('e');"><br />
+				<input type="button" id="south" value="S" onclick="chooseCommands('s');">
+			</span>
 		</div>
 	</body>
 </html>

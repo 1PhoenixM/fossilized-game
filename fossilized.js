@@ -1,21 +1,35 @@
 //Global vars
 locations = [];
-//dir = [];
 map = [];
 inventory = [];
+//locid = 0;
 
-function commands(buttondir){
-	tInput=document.getElementById('input').toLowerCase();
-	if (buttondir === 'noDir'){
-		buttondir === tInput;
+
+function chooseCommands(buttondir){
+tInput = document.getElementById('textInput').value.toLowerCase();
+tInput = buttondir;
+	if (buttondir !== 'n' || buttondir !== 'e' || buttondir !== 'w' || buttondir !== 's'){
+	doStuff();
 	}
-		navigate(locations[currentLocation], buttondir);
+	navigate(0, buttondir);
+}
+
+function doStuff(){
+tDisplay = document.getElementById('textDisplay');
+tInput = document.getElementById('textInput').value.toLowerCase();
+	if (tInput === 'take'){
+	tDisplay.value =  "The " + "item.name"+ " was taken.";
+	}
+	else
+	{
+	tDisplay.value = tDisplay.value + "You are asking the impossible...";
+	}
 }
 
 function navigate(currentLocation, direction){
-	tDisplay=document.getElementById('textDisplay');
+	
+tDisplay = document.getElementById('textDisplay');
 
-	 
 	//Location List
 	locations[0] = "You are in the Salt Desert, with nothing but white sand in all directions. The sun is beating down from above.";
 	locations[1] = "An hour's hike has led you no closer to civilization. The Salt Desert stretches in all directions...";
@@ -25,7 +39,7 @@ function navigate(currentLocation, direction){
 							" you are able to read.";
 	locations[4] = "THE STONE OASIS: That's what the sign says, anyway. This small oasis features a ring of several"  +  
 							" small huts constructed entirely of gray stone, all adorned with brightly colored awnings that" + 
-							" provide shade. A stone fountain is located in the center of this ring. It runs sluggishly, but hey, it's water. Take some?";				
+							" provide shade. A stone fountain is located in the center of this ring. It runs sluggishly, but hey, it's water.";				
 	locations[5] = "SALT CLIFF: You are at the top of a sheer white cliff. It's a long way down, but it does give a good view of the Carbonic Valley," +
 							" an expansive of dark gray sand that stretches as far as the eye can see. There is sparse human activity, but a cluster of tents is" +
 							" clearly visible from up here. A southerly path seems to lead down the cliff.";
@@ -33,6 +47,19 @@ function navigate(currentLocation, direction){
 	locations[7] = "You are getting close to heat exhaustion. In the distance, there's something on the horizon, but it could be just a mirage.";
 	locations[8] = "Within the cave, you find one Aqua Gem! Congratulations! You've won this game.";
 	//mention aqua gem earlier when water taken
+	
+	/*var Location0 = {
+'id':0, 
+'name':"The Salt Desert",
+'desc':"You are in the Salt Desert, with nothing but white sand in all directions. The sun is beating down from above.",
+ 'item', 
+ 'visited', 
+ 'toString()'};
+var Item0 = {
+'id':0,
+ 'name':"Water",
+ 'desc':"Will you take some?",
+ 'toString()'};*/
 	
 	//Direction list
 	
@@ -72,11 +99,4 @@ function navigate(currentLocation, direction){
 	currentLocation = locations[map[0][dir]];
 	tDisplay.value = currentLocation;
 	
-
-	/*if (currentLocation === 1 && direction === 0){
-	tDisplay.value = currentLocation;
-	}
-	else{
-	tDisplay.value = tDisplay.value;
-	}*/
 }
