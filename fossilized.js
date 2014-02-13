@@ -4,23 +4,29 @@ map = [];
 inventory = [];
 traceLocation = 0;
 
+function enterConfirm(){
+if (event.keyCode == 13) {
+document.getElementById('confirmButton').click()
+document.getElementById('textInput').value=""
+}
+}
+
 function chooseCommands(buttondir){
 tInputText = document.getElementById('textInput').value.toLowerCase();
-if ((!(buttondir === 'n' || buttondir === 'e' || buttondir === 'w' || buttondir === 's')) && (!(tInputText === 'n' || tInputText  === 'e' || tInputText === 'w' || tInputText  === 's'))){
+if (buttondir === 'noDir'){
 	doStuff();
 	}
-else{
-	if (tInputText === 'n' || tInputText  === 'e' || tInputText === 'w' || tInputText  === 's'){
-	tInputText = buttondir;
-	}
 	navigate(traceLocation, buttondir);
-	}
 }
+
 
 function doStuff(){
 tDisplay = document.getElementById('textDisplay');
 tInputText = document.getElementById('textInput').value.toLowerCase();
-	if (tInputText === 'take'){
+	if (tInputText === 'n' || tInputText  === 'e' || tInputText === 'w' || tInputText  === 's'){
+	navigate(traceLocation, tInputText);
+	}
+	else if (tInputText === 'take'){
 	tDisplay.value =  "The " + "Item.itemName"+ " was taken.";
 	}
 	else
@@ -183,5 +189,10 @@ Items = [Item0, Item1, Item2, Item3, Item4];
 	updateDisplay = Locations[currentLocation].desc;
 	tDisplay.value = updateDisplay;
 	traceLocation = currentLocation;
+	
+if (Locations[currentLocation].visited === false){
+document.getElementById('score').innerHTML = parseFloat(document.getElementById('score').innerHTML) + 5;
+Locations[currentLocation] = {visited:true,};
+}
 	
 }
