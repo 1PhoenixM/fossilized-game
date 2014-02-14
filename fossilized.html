@@ -14,7 +14,10 @@ Credit for scroll bar locking: http://stackoverflow.com/questions/9170670/how-do
 
 	<body onload="welcome();">
 		<h2>Fossilized</h2>
-		<div id="textarea"><textarea id="textDisplay" value="" readonly></textarea></div>
+		<span id="imgSpan"><img id="theMap" alt="A map of locations." src="finalmap.png"></span>
+		<div id="textarea">
+		<textarea id="textDisplay" value="" readonly></textarea>
+		</div>
 		<div id="input">
 			<input type="text" id="textInput" value="" onkeydown="enterConfirm();"></input>
 			<button type="button" id="confirmButton" value="CONFIRM" onclick="chooseCommands('noDir');">CONFIRM</button>

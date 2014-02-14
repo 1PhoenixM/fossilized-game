@@ -2,6 +2,13 @@ body
 {
 text-align:center;
 font-family:courier;
+background-color:#F6F6F6;
+}
+
+h2
+{
+float:right-top;
+margin-left:400px;
 }
 
 div
@@ -14,8 +21,15 @@ width:70%;
 
 textarea
 {
-width:600px;
+width:500px;
 height:400px;
+float:right;
+}
+
+#imgSpan
+{
+float:left;
+margin-left:100px;
 }
 
 #textInput
@@ -33,5 +47,10 @@ width:100px;
 position:static;
 width:10px;
 height:10px;
+}
+
+#input
+{
+float:right;
 }
 
