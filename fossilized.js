@@ -9,100 +9,26 @@ tDisplay = document.getElementById('textDisplay');
 tInputText = document.getElementById('textInput').value.toLowerCase();
 commandDisplay = '\n<' + tInputText + '\n>';
 
-Item0 = {
-id:0,
-itemName:"Water",
-desc:"\n>>>Will you take some?\n",
-};
-Item1 = {
-id:1,
-itemName:"Small Sundial",
-desc:"\n>>>There's a small SUNDIAL buried here. Take it?\n",
-};
-Item2 = {
-id:2,
-itemName:"Coin",
-desc:"\n>>>By the fence is an old-looking COIN. Take it?\n",
-};
-Item3 = {
-id:3,
-itemName:"Shovel",
-desc:"\n>>>A rusty SHOVEL was found. Take it?\n",
-};
-Item4 = {
-id:4,
-itemName:"Aqua Gem",
-desc:"",
-};
+function Locale(id){
+this.id = id;
+this.locName = "";
+this.desc = "";
+this.item = "";
+this.visited = "";
+this.toString = function(){
+	return "Locale id = " + this.id + "locName=" + this.locName + "desc=" + this.desc + "item=" + this.item + "visited=" + this.visited + "]";
+	}
+}
 
+function Item(id){
+this.id = id;
+this.itemName = "";
+this.desc = "";
+this.toString = function(){
+	return "Item id = " + this.id + "itemName=" + this.itemName + "desc=" + this.desc + "]";
+	}
+}
 
-Items = [Item0, Item1, Item2, Item3, Item4];
-
-Location0 = {
-id:0, 
-locName:"The Salt Desert",
-desc:tDisplay.value + '\n' + fullTime + "\n>>You are in the Salt Desert, with nothing but white sand in all directions. The sun is beating down from above.\n",
-item:"undefined", 
-visited:false, 
-};
-Location1 = {
-id:1, 
-locName:"North Salt Desert",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike has led you no closer to civilization. The Salt Desert stretches in all directions...\n",
-item:Items[1], 
-visited:false, 
-};
-Location2 = {
-id:2, 
-locName:"South Salt Desert",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike shows no difference in the horizon, but as you go, the ground becomes more and more uneven.\n",
-item:"undefined", 
-visited:false, 
-};
-Location3 = {
-id:3, 
-locName:"Tylavian Border",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>A fifteen-minute trek leads you, unceremoniously, to an impassable barbed-wire fence, too high to climb and virtually" + " impenetrable. A metal sign on the fence reads 'TYLAVIAN BORDER' in three different languages, only one of which" + " you are able to read.\n",
-item:Items[2], 
-visited:false, 
-};
-Location4 = {
-id:4, 
-locName:"Stone Oasis",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>THE STONE OASIS: That's what the sign says, anyway. This small oasis features a ring of several" + " small huts constructed entirely of gray stone, all adorned with brightly colored awnings that" + " provide shade. A stone fountain is located in the center of this ring. It runs sluggishly, but hey, it's WATER!\n",
-item:Items[0], 
-visited:false, 
-};
-Location5 = {
-id:5, 
-locName:"Salt Cliff",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>SALT CLIFF: You are at the top of a sheer white cliff. It's a long way down, but it does give a good view of the Carbonic Valley," + " an expansive of dark gray sand that stretches as far as the eye can see. There is sparse human activity, but a cluster of tents is" + " clearly visible from up here. A southerly path seems to lead down the cliff.\n",
-item:"undefined", 
-visited:false, 
-};
-Location6 = {
-id:6, 
-locName:"Cliff Path",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>The path is rocky and treacherous. There is a small opening in the cliff, leading into some sort of dark cave.\n",
-item:Items[3], 
-visited:false, 
-};
-Location7 = {
-id:7, 
-locName:"Badlands",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>You've reached the badlands. You hear the sound of drilling in the distance.\n",
-item:"undefined", 
-visited:false, 
-};
-Location8 = {
-id:8, 
-locName:"Aqua Cave",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>Within the cave, you find one AQUA GEM! Congratulations! You've won this game.",
-item:Items[4], 
-visited:false, 
-};
-
-Locations = [Location0, Location1, Location2, Location3, Location4, Location5, Location6, Location7, Location8];
 
 
 function welcome(){
@@ -173,102 +99,92 @@ tDisplay.scrollTop = tDisplay.scrollHeight;
 date = new Date();
 fullTime = '>' + date;
 
-var Item0 = {
-id:0,
-itemName:"Water",
-desc:"\n>>>Will you take some?\n",
-};
-var Item1 = {
-id:1,
-itemName:"Small Sundial",
-desc:"\n>>>There's a small SUNDIAL buried here. Take it?\n",
-};
-var Item2 = {
-id:2,
-itemName:"Coin",
-desc:"\n>>>By the fence is an old-looking COIN. Take it?\n",
-};
-var Item3 = {
-id:3,
-itemName:"Shovel",
-desc:"\n>>>A rusty SHOVEL was found. Take it?\n",
-};
-var Item4 = {
-id:4,
-itemName:"Aqua Gem",
-desc:"",
-};
+
+Item0 = new Item(0);
+Item0.itemName = "Water";
+Item0.desc = "\n>>>Will you take some?\n";
+
+Item1 = new Item(1);
+Item1.itemName = "Sundial";
+Item1.desc = "\n>>>There's a small SUNDIAL buried here. Take it?\n";
+
+Item2 = new Item(2);
+Item2.itemName = "Coin";
+Item2.desc = "\n>>>By the fence is an old-looking COIN. Take it?\n";
+
+Item3 = new Item(3);
+Item3.itemName = "Shovel";
+Item3.desc = "\n>>>A rusty SHOVEL was found. Take it?\n";
+
+Item4 = new Item(4);
+Item4.itemName = "Aqua Gem";
+Item4.desc = "";
 
 
 Items = [Item0, Item1, Item2, Item3, Item4];
 
-Location0 = {
-id:0, 
-locName:"The Salt Desert",
-desc:tDisplay.value + '\n' + fullTime + "\n>>You are in the Salt Desert, with nothing but white sand in all directions. The sun is beating down from above.\n",
-item:"undefined", 
-visited:false, 
-};
-Location1 = {
-id:1, 
-locName:"North Salt Desert",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike has led you no closer to civilization. The Salt Desert stretches in all directions...\n",
-item:Items[1], 
-visited:false, 
-};
-Location2 = {
-id:2, 
-locName:"South Salt Desert",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike shows no difference in the horizon, but as you go, the ground becomes more and more uneven.\n",
-item:"undefined", 
-visited:false, 
-};
-Location3 = {
-id:3, 
-locName:"Tylavian Border",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>A fifteen-minute trek leads you, unceremoniously, to an impassable barbed-wire fence, too high to climb and virtually" + " impenetrable. A metal sign on the fence reads 'TYLAVIAN BORDER' in three different languages, only one of which" + " you are able to read.\n",
-item:Items[2], 
-visited:false, 
-};
-Location4 = {
-id:4, 
-locName:"Stone Oasis",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>THE STONE OASIS: That's what the sign says, anyway. This small oasis features a ring of several" + " small huts constructed entirely of gray stone, all adorned with brightly colored awnings that" + " provide shade. A stone fountain is located in the center of this ring. It runs sluggishly, but hey, it's WATER!\n",
-item:Items[0], 
-visited:false, 
-};
-Location5 = {
-id:5, 
-locName:"Salt Cliff",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>SALT CLIFF: You are at the top of a sheer white cliff. It's a long way down, but it does give a good view of the Carbonic Valley," + " an expansive of dark gray sand that stretches as far as the eye can see. There is sparse human activity, but a cluster of tents is" + " clearly visible from up here. A southerly path seems to lead down the cliff.\n",
-item:"undefined", 
-visited:false, 
-};
-Location6 = {
-id:6, 
-locName:"Cliff Path",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>The path is rocky and treacherous. There is a small opening in the cliff, leading into some sort of dark cave.\n",
-item:Items[3], 
-visited:false, 
-};
-Location7 = {
-id:7, 
-locName:"Badlands",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>You've reached the badlands. You hear the sound of drilling in the distance.\n",
-item:"undefined", 
-visited:false, 
-};
-Location8 = {
-id:8, 
-locName:"Aqua Cave",
-desc:tDisplay.value +  '\n' + fullTime +  "\n>>Within the cave, you find one AQUA GEM! Congratulations! You've won this game.",
-item:Items[4], 
-visited:false, 
-};
+
+Location0 = new Locale(0);
+Location0.locName = "The Salt Desert";
+Location0.desc = tDisplay.value + '\n' + fullTime + "\n>>You are in the Salt Desert, with nothing but white sand in all directions. The sun is beating down from above.\n";
+Location0.item = "undefined";
+Location0.visited = false;
+
+Location1 = new Locale(1);
+Location1.locName ="North Salt Desert";
+Location1.desc = tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike has led you no closer to civilization. The Salt Desert stretches in all directions...\n";
+Location1.item = Items[1];
+Location1.visited = false; 
+
+Location2 = new Locale(2);
+Location2.locName = "East Salt Desert";
+Location2.desc = tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike shows no difference in the horizon, but as you go, the ground becomes more and more uneven.\n";
+Location2.item = "undefined";
+Location2.visited = false; 
+
+Location3 = new Locale(3);
+Location3.locName = "Tylavian Border";
+Location3.desc = tDisplay.value +  '\n' + fullTime +  "\n>>A fifteen-minute trek leads you, unceremoniously, to an impassable barbed-wire fence, too high to climb and virtually" + " impenetrable. A metal sign on the fence reads 'TYLAVIAN BORDER' in three different languages, only one of which" + " you are able to read.\n";
+Location3.item = Items[2];
+Location3.visited = false; 
+
+Location4 = new Locale(4);
+Location4.locName = "Stone Oasis";
+Location4.desc = tDisplay.value +  '\n' + fullTime +  "\n>>THE STONE OASIS: That's what the sign says, anyway. This small oasis features a ring of several" + " small huts constructed entirely of gray stone, all adorned with brightly colored awnings that" + " provide shade. A stone fountain is located in the center of this ring. It runs sluggishly, but hey, it's WATER!\n";
+Location4.item = Items[0];
+Location4.visited = false; 
+
+Location5 = new Locale(5);
+Location5.locName = "Salt Cliff";
+Location5.desc = tDisplay.value +  '\n' + fullTime +  "\n>>SALT CLIFF: You are at the top of a sheer white cliff. It's a long way down, but it does give a good view of the Carbonic Valley," + " an expansive of dark gray sand that stretches as far as the eye can see. There is sparse human activity, but a cluster of tents is" + " clearly visible from up here. A southerly path seems to lead down the cliff.\n";
+Location5.item = "undefined";
+Location5.visited = false;
+
+Location6 = new Locale(6);
+Location6.locName = "Cliff Path";
+Location6.desc = tDisplay.value +  '\n' + fullTime +  "\n>>The path is rocky and treacherous. There is a small opening in the cliff, leading into some sort of dark cave.\n";
+Location6.item = Items[3];
+Location6.visited = false; 
+
+Location7 = new Locale(7);
+Location7.locName = "Badlands";
+Location7.desc = tDisplay.value +  '\n' + fullTime +  "\n>>You've reached the badlands. You hear the sound of drilling in the distance.\n";
+Location7.item = "undefined";
+Location7.visited = false;
+
+Location8 = new Locale(8);
+Location8.locName = "Aqua Cave";
+Location8.desc = tDisplay.value +  '\n' + fullTime +  "\n>>Within the cave, you find one AQUA GEM! Congratulations! You've won this game.";
+Location8.item = Items[4];
+Location8.visited = false;
+
 
 Locations = [Location0, Location1, Location2, Location3, Location4, Location5, Location6, Location7, Location8];
 
-
+	if (Locations[currentLocation].visited === false){
+	Locations[currentLocation].visited = true;
+	document.getElementById('score').innerHTML = parseFloat(document.getElementById('score').innerHTML) + 5;
+	}
 	
 	//Direction list
 	
@@ -311,28 +227,29 @@ Locations = [Location0, Location1, Location2, Location3, Location4, Location5, L
 
 	//tDisplay.scrollTop = tDisplay.scrollHeight;
 	
-	
 	currentLocation = Locations[map[currentLocation][dir]].id;
+	var itemCheck = inventory.indexOf(Locations[currentLocation].item.itemName);
 
 	if(Locations[currentLocation].item === 'undefined'){
 	updateDisplay = Locations[currentLocation].desc;
 	tDisplay.value = updateDisplay;
 	}
 		
-	else if (Locations[currentLocation].item !== 'undefined'){
+	else if (Locations[currentLocation].item !== 'undefined' && itemCheck === -1){
 	updateDisplay = Locations[currentLocation].desc;
 	updateItem = Items[Locations[currentLocation].item.id].desc;
 	tDisplay.value = updateDisplay + updateItem;
 	}
 	
+	else if (Locations[currentLocation].item !== 'undefined' && itemCheck !== -1){
+	updateDisplay = Locations[currentLocation].desc;
+	tDisplay.value = updateDisplay;
+	}
+	
 	
 	traceLocation = currentLocation;
-
 	
-if (Locations[currentLocation].visited === false){
-document.getElementById('score').innerHTML = parseFloat(document.getElementById('score').innerHTML) + 5;
-Locations[currentLocation] = {visited:true,};
-}
+
 //should score be global instead? maybe not. it's probably the object syntax resetting it. make a constructor and the problem should be fixed.
 if(currentLocation === 8){
 finalHours=date.getHours();
@@ -367,4 +284,3 @@ document.getElementById('west').disabled = true;
 }	
 	
 }
-
