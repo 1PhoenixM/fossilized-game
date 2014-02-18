@@ -69,32 +69,37 @@ tInputText = document.getElementById('textInput').value.toLowerCase();
 	}
 	else if (tInputText === 'take'){
 	tDisplay.value =  tDisplay.value + "\n>>>Take what?\n";
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 	else if ((tInputText === 'take water' && traceLocation === 4) || (tInputText === 'take sundial' && traceLocation === 1) || (tInputText === 'take coin'  && traceLocation === 3) || (tInputText === 'take shovel'  && traceLocation === 6) || (tInputText === 'take aqua gem'  && traceLocation === 8)){
 	tDisplay.value =  tDisplay.value + "\n>>>The " + Locations[traceLocation].item.itemName  + " was taken.\n";  
 	inventory.push(Locations[traceLocation].item.itemName);
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 	else if (tInputText === 'h'){
 	tDisplay.value = tDisplay.value + "\nTo play this game, navigate through the locations using the text box underneath this one or the directional buttons. Text box commands include 'n' to go north, 'e' for east, 's' for south, and 'w' for west. 'i' accesses your current inventory of items, and 'h' displays this help at any time. Click CONFIRM or press the Enter key to confirm a command once you've typed it. Have fun!\n";
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 	else if (tInputText === 'i'){
 		if(inventory === []){
 		tDisplay.value = tDisplay.value + '\nYou have no items in your inventory yet... use the "take <item>" command to add items you find to your inventory.\n';
+		tDisplay.scrollTop = tDisplay.scrollHeight;
 		}
 		else{
 		tDisplay.value = tDisplay.value + '\n*Inventory:' + inventory.toString(); + '}\n';
+		tDisplay.scrollTop = tDisplay.scrollHeight;
 		}
 	}
 	else
 	{
 	tDisplay.value = tDisplay.value + " \nYou are asking the impossible... Type 'h' and click CONFIRM (or press Enter) for a list of valid commands.\n";
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 }
 
 function navigate(currentLocation, direction){
 
 tDisplay = document.getElementById('textDisplay');
-tDisplay.scrollTop = tDisplay.scrollHeight;
 
 date = new Date();
 fullTime = '>' + date;
@@ -221,7 +226,6 @@ Locations = [Location0, Location1, Location2, Location3, Location4, Location5, L
 	];
 	
 
-	//tDisplay.scrollTop = tDisplay.scrollHeight;
 	
 	currentLocation = Locations[map[currentLocation][dir]].id;
 	var itemCheck = inventory.indexOf(Locations[currentLocation].item.itemName);
@@ -229,17 +233,20 @@ Locations = [Location0, Location1, Location2, Location3, Location4, Location5, L
 	if(Locations[currentLocation].item === 'undefined'){
 	updateDisplay = Locations[currentLocation].desc;
 	tDisplay.value = updateDisplay;
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 		
 	else if (Locations[currentLocation].item !== 'undefined' && itemCheck === -1){
 	updateDisplay = Locations[currentLocation].desc;
 	updateItem = Items[Locations[currentLocation].item.id].desc;
 	tDisplay.value = updateDisplay + updateItem;
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 	
 	else if (Locations[currentLocation].item !== 'undefined' && itemCheck !== -1){
 	updateDisplay = Locations[currentLocation].desc;
 	tDisplay.value = updateDisplay;
+	tDisplay.scrollTop = tDisplay.scrollHeight;
 	}
 	
 	
