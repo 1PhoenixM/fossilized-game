@@ -3,6 +3,7 @@ map = [];
 inventory = [];
 Locations = [];
 Items = [];
+visitedLocations = [];
 traceLocation = 0;
 traceDir = 0;
 tDisplay = document.getElementById('textDisplay');
@@ -14,9 +15,8 @@ this.id = id;
 this.locName = "";
 this.desc = "";
 this.item = "";
-this.visited = "";
 this.toString = function(){
-	return "Locale id = " + this.id + "locName=" + this.locName + "desc=" + this.desc + "item=" + this.item + "visited=" + this.visited + "]";
+	return "Locale id = " + this.id + "locName=" + this.locName + "desc=" + this.desc + "item=" + this.item + "]";
 	}
 }
 
@@ -128,63 +128,59 @@ Location0 = new Locale(0);
 Location0.locName = "The Salt Desert";
 Location0.desc = tDisplay.value + '\n' + fullTime + "\n>>You are in the Salt Desert, with nothing but white sand in all directions. The sun is beating down from above.\n";
 Location0.item = "undefined";
-Location0.visited = false;
+
 
 Location1 = new Locale(1);
 Location1.locName ="North Salt Desert";
 Location1.desc = tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike has led you no closer to civilization. The Salt Desert stretches in all directions...\n";
 Location1.item = Items[1];
-Location1.visited = false; 
+ 
 
 Location2 = new Locale(2);
 Location2.locName = "East Salt Desert";
 Location2.desc = tDisplay.value +  '\n' + fullTime +  "\n>>An hour's hike shows no difference in the horizon, but as you go, the ground becomes more and more uneven.\n";
 Location2.item = "undefined";
-Location2.visited = false; 
+ 
 
 Location3 = new Locale(3);
 Location3.locName = "Tylavian Border";
 Location3.desc = tDisplay.value +  '\n' + fullTime +  "\n>>A fifteen-minute trek leads you, unceremoniously, to an impassable barbed-wire fence, too high to climb and virtually" + " impenetrable. A metal sign on the fence reads 'TYLAVIAN BORDER' in three different languages, only one of which" + " you are able to read.\n";
 Location3.item = Items[2];
-Location3.visited = false; 
+
 
 Location4 = new Locale(4);
 Location4.locName = "Stone Oasis";
 Location4.desc = tDisplay.value +  '\n' + fullTime +  "\n>>THE STONE OASIS: That's what the sign says, anyway. This small oasis features a ring of several" + " small huts constructed entirely of gray stone, all adorned with brightly colored awnings that" + " provide shade. A stone fountain is located in the center of this ring. It runs sluggishly, but hey, it's WATER!\n";
 Location4.item = Items[0];
-Location4.visited = false; 
+
 
 Location5 = new Locale(5);
 Location5.locName = "Salt Cliff";
 Location5.desc = tDisplay.value +  '\n' + fullTime +  "\n>>SALT CLIFF: You are at the top of a sheer white cliff. It's a long way down, but it does give a good view of the Carbonic Valley," + " an expansive of dark gray sand that stretches as far as the eye can see. There is sparse human activity, but a cluster of tents is" + " clearly visible from up here. A southerly path seems to lead down the cliff.\n";
 Location5.item = "undefined";
-Location5.visited = false;
+
 
 Location6 = new Locale(6);
 Location6.locName = "Cliff Path";
 Location6.desc = tDisplay.value +  '\n' + fullTime +  "\n>>The path is rocky and treacherous. There is a small opening in the cliff, leading into some sort of dark cave.\n";
 Location6.item = Items[3];
-Location6.visited = false; 
+
 
 Location7 = new Locale(7);
 Location7.locName = "Badlands";
 Location7.desc = tDisplay.value +  '\n' + fullTime +  "\n>>You've reached the badlands. You hear the sound of drilling in the distance.\n";
 Location7.item = "undefined";
-Location7.visited = false;
+
 
 Location8 = new Locale(8);
 Location8.locName = "Aqua Cave";
 Location8.desc = tDisplay.value +  '\n' + fullTime +  "\n>>Within the cave, you find one AQUA GEM! Congratulations! You've won this game.";
 Location8.item = Items[4];
-Location8.visited = false;
 
 
 Locations = [Location0, Location1, Location2, Location3, Location4, Location5, Location6, Location7, Location8];
 
-	if (Locations[currentLocation].visited === false){
-	Locations[currentLocation].visited = true;
-	document.getElementById('score').innerHTML = parseFloat(document.getElementById('score').innerHTML) + 5;
-	}
+
 	
 	//Direction list
 	
@@ -248,9 +244,14 @@ Locations = [Location0, Location1, Location2, Location3, Location4, Location5, L
 	
 	
 	traceLocation = currentLocation;
+	var locationCheck = visitedLocations.indexOf(Locations[currentLocation].locName);
 	
+	if (locationCheck === -1){
+	document.getElementById('score').innerHTML = parseFloat(document.getElementById('score').innerHTML) + 5;
+	}
+	
+	visitedLocations.push(Locations[currentLocation].locName);
 
-//should score be global instead? maybe not. it's probably the object syntax resetting it. make a constructor and the problem should be fixed.
 if(currentLocation === 8){
 finalHours=date.getHours();
 finalMinutes=date.getMinutes();
